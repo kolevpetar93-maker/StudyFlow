@@ -1,0 +1,35 @@
+# Operacijski sistem in urejevalniki
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Flutter in Dart, ko bo aplikacija inicializirana
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+coverage/
+android/local.properties
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/ephemeral/
+macos/Flutter/ephemeral/
+
+# Lokalna konfiguracija in skrivnosti
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+*service-account*.json
+*serviceAccount*.json
+google-services.json
+GoogleService-Info.plist
+
+# Začasno preverjanje in predogledi
+__pycache__/
+*.pyc
+.preview/

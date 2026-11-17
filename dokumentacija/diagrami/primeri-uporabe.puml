@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor "Študent / dijak" as Student
+actor "Firebase" as Firebase <<zunanji sistem>>
+actor "Google Calendar" as Calendar <<zunanji sistem>>
+actor "Zunanji AI" as AI <<zunanji sistem>>
+rectangle StudyFlow {
+  usecase "UC01 Predmeti in obveznosti" as UC01
+  usecase "UC02 Razpoložljivost" as UC02
+  usecase "UC03 Izdelava učnega načrta" as UC03
+  usecase "UC04 Prilagoditev načrta" as UC04
+  usecase "UC05 Učna seja in Focus Mode" as UC05
+  usecase "UC06 Pregled napredka" as UC06
+  usecase "UC07 Nastavitev opomnikov" as UC07
+  usecase "UC08 Račun in sinhronizacija" as UC08
+  usecase "UC09 Uvoz Google Calendar" as UC09
+  usecase "UC10 Zajem gradiva in OCR · napredno" as UC10
+  usecase "UC11 AI kviz · napredno" as UC11
+}
+Student -- UC01
+Student -- UC02
+Student -- UC03
+Student -- UC04
+Student -- UC05
+Student -- UC06
+Student -- UC07
+Student -- UC08
+Student -- UC09
+Student -- UC10
+Student -- UC11
+UC08 -- Firebase
+UC09 -- Calendar
+UC11 -- AI
+@enduml
