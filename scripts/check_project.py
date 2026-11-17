@@ -1,4 +1,4 @@
-"""Initial CI checks for planning files; standard library only."""
+"""Check starter files and local documentation links without extra packages."""
 
 from html.parser import HTMLParser
 from pathlib import Path
@@ -7,127 +7,76 @@ import sys
 from urllib.parse import unquote, urlsplit
 import xml.etree.ElementTree as ET
 
-
 ROOT = Path(__file__).resolve().parents[1]
-ERRORS = []
 REQUIRED = [
-    "README.md", "CONTRIBUTING.md", ".github/workflows/ci.yml",
-    ".github/ISSUE_TEMPLATE/naloga.md", "lib/README.md",
-    "assets/README.md", "test/README.md",
-    "dokumentacija/00-nacrt-oddaje.md",
-    "dokumentacija/01-opis-projekta.md",
-    "dokumentacija/02-uporabniski-scenariji.md",
-    "dokumentacija/03-podatkovni-model.md",
-    "dokumentacija/04-arhitektura.md",
-    "dokumentacija/05-organizacija-dela.md",
-    "dokumentacija/06-prototip.md",
-    "dokumentacija/07-zacetne-naloge.md",
-    "dokumentacija/08-github-in-ci.md",
-    "dokumentacija/diagrami/primeri-uporabe.svg",
-    "dokumentacija/diagrami/primeri-uporabe.puml",
-    "dokumentacija/mockupi/index.html",
-    "dokumentacija/mockupi/pregled.svg",
-]
+    "README.md", "pubspec.yaml", "pubspec.lock", "lib/main.dart", "test/app_test.dart",
+    ".github/workflows/ci.yml", "dokumentacija/README.md",
+    "dokumentacija/01-projekt.md", "dokumentacija/02-tehnicna-zasnova.md",
+    "dokumentacija/03-nacrt-dela.md", "dokumentacija/04-razvoj-in-github.md",
+    "dokumentacija/DPU/README.md", "dokumentacija/mockupi/README.md",
+    "dokumentacija/mockupi/index.html", "dokumentacija/mockupi/pregled.svg",
+    "dokumentacija/mockupi/pregled.png",
+] + [f"dokumentacija/mockupi/slike/{name}.svg" for name in (
+    "01-domov", "02-predmeti", "03-nacrt", "04-nova-naloga", "05-fokus", "06-napredek",
+)]
 
 
-def fail(path, message):
-    ERRORS.append(f"{path.relative_to(ROOT).as_posix()}: {message}")
-
-
-class Page(HTMLParser):
+class Links(HTMLParser):
     def __init__(self):
-        super().__init__(convert_charrefs=True)
-        self.ids = set()
-        self.duplicates = set()
-        self.links = []
-        self.screens = set()
+        super().__init__()
+        self.targets = []
 
     def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
-        if "id" in attrs:
-            value = attrs["id"]
-            if value in self.ids:
-                self.duplicates.add(value)
-            self.ids.add(value)
-            if tag == "section" and "screen" in attrs.get("class", "").split():
-                self.screens.add(value)
-        for key in ("href", "src"):
-            if attrs.get(key):
-                self.links.append(attrs[key])
-
-
-def check_link(source, link, page=None):
-    target = urlsplit(link)
-    if target.scheme in {"http", "https", "mailto", "data", "tel"}:
-        return
-    if target.scheme or target.netloc:
-        fail(source, f"unsupported link: {link}")
-        return
-    destination = (source.parent / unquote(target.path)).resolve() if target.path else source
-    if not destination.is_relative_to(ROOT):
-        fail(source, f"link leaves repository: {link}")
-    elif not destination.exists():
-        fail(source, f"missing link target: {link}")
-    elif page and not target.path and target.fragment not in page.ids:
-        fail(source, f"missing HTML id: {link}")
+        for key, value in attrs:
+            if key in {"href", "src"} and value:
+                self.targets.append(value)
 
 
 def main():
+    errors = []
     for name in REQUIRED:
         path = ROOT / name
         if not path.is_file() or not path.stat().st_size:
-            fail(path, "required file missing or empty")
-    for folder in ("screens", "models", "services", "providers", "widgets"):
-        path = ROOT / "lib" / folder
-        if not path.is_dir():
-            fail(path, "required Flutter folder missing")
+            errors.append(f"Missing or empty file: {name}")
+    for name in ("screens", "models", "services", "providers", "widgets"):
+        if not (ROOT / "lib" / name).is_dir():
+            errors.append(f"Missing folder: lib/{name}")
 
-    files = [path for path in ROOT.rglob("*") if path.is_file()
-             and not any(part.startswith(".") for part in path.relative_to(ROOT).parts)]
+    # Inspect only project documentation, not generated SDK/build files.
+    files = [ROOT / "README.md", *(ROOT / "dokumentacija").rglob("*")]
     for path in files:
-        if path.suffix not in {".md", ".svg", ".html"}:
+        if not path.is_file() or path.suffix not in {".md", ".html", ".svg"}:
             continue
+        label = path.relative_to(ROOT).as_posix()
         try:
             content = path.read_text(encoding="utf-8")
+            targets = []
             if path.suffix == ".md":
-                # Ignore examples inside code fences and inline code.
-                prose = re.sub(r"```.*?```", "", content, flags=re.S)
-                prose = re.sub(r"`[^`]+`", "", prose)
-                for link in re.findall(r"\]\(([^)]+)\)", prose):
-                    check_link(path, link)
-            elif path.suffix == ".svg":
-                root = ET.fromstring(content)
-                if root.tag != "{http://www.w3.org/2000/svg}svg":
-                    fail(path, "expected SVG root")
+                prose = re.sub(r"```.*?```|`[^`]+`", "", content, flags=re.S)
+                targets = re.findall(r"\]\(([^)]+)\)", prose)
+            elif path.suffix == ".html":
+                parser = Links()
+                parser.feed(content)
+                targets = parser.targets
             else:
-                page = Page()
-                page.feed(content)
-                for link in page.links:
-                    check_link(path, link, page)
-                if page.duplicates:
-                    fail(path, f"duplicate HTML ids: {sorted(page.duplicates)}")
-                expected = {"welcome", "today", "subjects", "new-task", "plan", "replan",
-                            "focus", "progress", "settings", "material", "quiz"}
-                if not expected.issubset(page.screens):
-                    fail(path, f"missing prototype screens: {sorted(expected - page.screens)}")
-        except (UnicodeError, ET.ParseError, ValueError) as error:
-            fail(path, str(error))
-
-    backlog = ROOT / "dokumentacija/07-zacetne-naloge.md"
-    if backlog.is_file():
-        sections = re.split(r"(?m)^## SF-", backlog.read_text(encoding="utf-8"))[1:]
-        if len(sections) != 12:
-            fail(backlog, "expected 12 initial issue drafts")
-        for section in sections:
-            for marker in ("**Prioriteta:** P", "**Odgovorna oseba:**", "**Merila sprejema:**", "**Odvisnosti:**"):
-                if marker not in section:
-                    fail(backlog, f"SF-{section[:2]} missing {marker}")
-
-    if ERRORS:
-        print("FAILED\n" + "\n".join(f"- {error}" for error in ERRORS))
+                if ET.fromstring(content).tag != "{http://www.w3.org/2000/svg}svg":
+                    errors.append(f"{label}: invalid SVG root")
+            for link in targets:
+                url = urlsplit(link)
+                if url.scheme in {"https", "http", "mailto", "data"}:
+                    continue
+                destination = (path.parent / unquote(url.path)).resolve() if url.path else path
+                if url.scheme or url.netloc or not destination.is_relative_to(ROOT):
+                    errors.append(f"{label}: unsupported target {link}")
+                elif not destination.exists():
+                    errors.append(f"{label}: missing target {link}")
+        except (UnicodeError, ValueError, ET.ParseError) as error:
+            errors.append(f"{label}: {error}")
+    if errors:
+        print("FAILED\n" + "\n".join(errors))
         return 1
-    print("PASS: required structure, local links, SVG, prototype routes and 12 issue drafts.")
-    print("GitHub publication, collaborators, assignments and hosted CI need separate verification.")
+    print("PASS: starter structure, local documentation links and SVG mockups.")
+    print("Team DPU, GitHub publication, assignments and hosted CI remain separate steps.")
     return 0
 
 

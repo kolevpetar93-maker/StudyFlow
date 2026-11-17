@@ -3,166 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>StudyFlow · Prototip</title>
+  <title>StudyFlow · Predlogi mockupov</title>
   <style>
-    :root{--ink:#173d39;--muted:#627873;--green:#1d695c;--light:#eaf2ed;--paper:#fcfbf7;--line:#dce5dd;--orange:#a85a27;--peach:#fff0df}
-    *{box-sizing:border-box}body{margin:0;background:#eeeFE8;color:var(--ink);font:15px/1.5 "Segoe UI",Arial,sans-serif}button,input,select,textarea{font:inherit}button,a,input,select,textarea{outline-offset:4px}a{color:var(--green)}button,a{touch-action:manipulation}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #c27b25}button{border:0}h1,h2,h3,p{margin:0}h2{font-size:27px;line-height:1.2;letter-spacing:-.8px}h3{font-size:16px}p{margin-top:7px}small,.muted{color:var(--muted)}
-    .layout{display:grid;grid-template-columns:280px 430px;gap:72px;justify-content:center;align-items:start;padding:40px 24px}.intro{padding:20px 0;position:sticky;top:25px}.brand{font-size:26px;font-weight:750;letter-spacing:-1px}.brand b{color:var(--green)}.tag{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--green)}.intro h1{font-size:36px;line-height:1.15;letter-spacing:-1.5px;margin:22px 0 12px}.intro p{color:var(--muted)}.guide{margin-top:24px;display:grid;gap:3px}.guide a{padding:7px 12px;border-radius:8px;text-decoration:none;font-size:13px}.guide a:hover,.guide a[aria-current="page"]{background:#dbe8df}.note{font-size:12px;padding:14px 0;border-top:1px solid #cfdace;margin-top:22px}
-    .device{background:var(--paper);border:8px solid #244740;border-radius:42px;box-shadow:0 24px 70px #123b3220;height:824px;width:410px;display:flex;flex-direction:column;overflow:hidden}.statusbar{display:flex;justify-content:space-between;padding:12px 23px 3px;font-size:11px;font-weight:650}.appbar{padding:14px 23px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.appbar .brand{font-size:22px}.settings-link{font-size:12px;text-decoration:none;border:1px solid var(--line);padding:6px 10px;border-radius:9px}.viewport{overflow-y:auto;flex:1;min-height:0;scrollbar-width:thin}.screen{padding:24px 22px 28px}.screen[hidden]{display:none}.eyebrow{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.stack{display:grid;gap:12px}.gap{margin-top:22px}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:17px}.hero{background:var(--ink);color:#fff;border:0;padding:22px}.hero .muted{color:#c8ddd2}.hero h3{font-size:35px;letter-spacing:-1px;margin:8px 0}.pill{display:inline-block;background:var(--light);color:var(--green);font-size:11px;font-weight:600;padding:4px 8px;border-radius:7px}.hero .pill{background:#ffffff20;color:#def3e4}.alert{background:var(--peach);border-color:#efd5b6;color:#75431e}.alert small{color:#845a37}.button{display:inline-flex;justify-content:center;align-items:center;gap:8px;background:var(--green);color:white;text-decoration:none;border-radius:11px;padding:12px 17px;font-weight:600;font-size:14px;min-height:44px}.button.full{width:100%}.button.secondary{background:var(--light);color:var(--green)}.button.small{padding:8px 12px;min-height:36px;font-size:12px}.button.white{background:white;color:var(--ink)}.section-title{margin:23px 0 12px}.task{border-left:4px solid #93bfa4}.task.purple{border-left-color:#aca2d5}.time{font-size:12px;color:var(--muted);margin-bottom:7px}.task p{font-size:13px;color:var(--muted)}.number{width:36px;height:36px;display:grid;place-items:center;background:var(--light);border-radius:11px;color:var(--green);font-weight:700}.subject{display:flex;gap:13px;align-items:center}.subject p{font-size:12px}.progress{height:6px;border-radius:8px;background:#e5ece5;overflow:hidden;margin-top:14px}.progress span{display:block;background:#69a689;height:100%}.back{font-size:12px;text-decoration:none;display:inline-block;margin-bottom:15px}.bottom{border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:10px 10px 13px;background:var(--paper)}.bottom a{font-size:11px;text-decoration:none;text-align:center;padding:6px 0;border-radius:10px;color:var(--muted)}.bottom a strong{display:block;font-size:16px;line-height:1.5;font-weight:500}.bottom a[aria-current="page"]{background:var(--light);color:var(--green);font-weight:700}.prototype-label{text-align:center;font-size:10px;background:#e6ece3;padding:5px;color:#48645b;letter-spacing:.2px}
-    label{display:block;font-size:12px;font-weight:600;margin:14px 0 5px}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cbd9ce;border-radius:10px;color:var(--ink);background:white;min-height:43px}textarea{min-height:120px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.days{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:18px 0}.day{padding:9px 0;text-align:center;background:var(--light);border-radius:10px;font-size:10px}.day strong{display:block;font-size:16px}.day.active{background:var(--green);color:white}.change{display:grid;gap:8px;margin-top:15px;font-size:13px}.change div{padding:12px;border-radius:10px;background:#f1f4ee}.change .new{background:#e0efe2}.timer{width:242px;height:242px;border:9px solid #dce9df;border-top-color:var(--green);border-radius:50%;margin:30px auto;display:flex;flex-direction:column;align-items:center;justify-content:center}.timer strong{font-size:51px;font-weight:500;letter-spacing:-2px}.switch{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:0;font-size:13px}.switch input{width:19px;height:19px;min-height:0;accent-color:var(--green)}.bars{height:125px;display:flex;align-items:end;gap:10px;margin:20px 0 8px}.bar{background:#8cb69a;flex:1;border-radius:5px 5px 0 0}.bar:nth-child(2){background:var(--green)}.chart-labels{display:flex;justify-content:space-around;font-size:10px;color:var(--muted)}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.metrics strong{display:block;font-size:26px}.welcome-art{height:165px;background:#e4eee2;border-radius:24px;margin:15px 0 27px;display:flex;justify-content:center;align-items:center;gap:9px}.book{width:35px;height:88px;background:#8cb69a;border-radius:5px;transform:rotate(-7deg);border-bottom:6px solid #648f73}.book:nth-child(2){background:#285f51;height:115px;transform:rotate(0)}.book:nth-child(3){background:#c6ad7e;height:98px;transform:rotate(9deg)}.welcome h2{font-size:32px}.photo{height:115px;background:#e9e6dc;border-radius:12px;display:grid;place-items:center;color:#7a7c6a;font-size:12px;border:1px dashed #aeb6a3}.option{display:block;width:100%;text-align:left;background:white;color:var(--ink);padding:14px;border:1px solid var(--line);border-radius:12px;margin-top:10px}.option.selected{border-color:var(--green);background:var(--light)}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#173d39;color:white;padding:13px 20px;border-radius:13px;max-width:min(90vw,500px);box-shadow:0 6px 20px #0003;z-index:10;font-size:13px}.toast[hidden]{display:none}
-    @media(max-width:800px){.layout{display:flex;flex-direction:column;align-items:center;gap:18px;padding:14px 8px}.intro{position:static;width:min(100%,410px);padding:5px 12px}.intro h1,.intro>p,.guide,.note{display:none}.intro .tag{float:right;font-size:9px;margin-top:13px}.device{width:min(100%,410px);height:824px}.brand{font-size:23px}}
-    @media(max-width:420px){.device{height:calc(100dvh - 78px);min-height:580px;border-width:4px;border-radius:26px}.screen{padding:20px 18px}.timer{width:210px;height:210px}}
+    *{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Arial,sans-serif;color:#40304f;background:#f4effa}main{max-width:1320px;margin:auto;padding:36px 28px 50px}
+    header{display:flex;justify-content:space-between;gap:20px;align-items:start;padding-bottom:25px;border-bottom:1px solid #e0d5ed}h1{font-size:34px;letter-spacing:-1px;margin:8px 0 10px}p{color:#8c789d;line-height:1.7;margin:0;max-width:750px}small{text-transform:uppercase;letter-spacing:2px;font-size:10px;font-weight:700;color:#9d7bb7}
+    a{color:#8a5eb2;text-underline-offset:4px}a:focus-visible{outline:3px solid #9d6ee2;outline-offset:5px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:34px}figure{margin:0;background:#eadff6;border-radius:25px;padding:20px 15px 14px}figure:nth-child(2n){background:#eee8f5}figcaption{font-size:12px;font-weight:650;color:#a087b3;display:flex;justify-content:space-between;margin:0 8px 13px}img{display:block;width:100%;height:auto;max-width:390px;margin:auto;filter:drop-shadow(0 10px 15px #5b397e12)}footer{font-size:12px;color:#9e88b1;margin-top:30px}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:560px){main{padding:22px 14px}.grid{grid-template-columns:1fr}header{display:block}header>a{display:block;margin-top:14px}h1{font-size:28px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
   </style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="intro">
-      <span class="tag">RVIR · prototip 01</span>
-      <div class="brand">Study<b>Flow</b></div>
-      <h1>Več jasnosti.<br>Manj zamud.</h1>
-      <p>Predlog mobilne aplikacije za načrtovanje učenja. Izberite zaslon ali sledite toku v telefonu.</p>
-      <nav class="guide" aria-label="Vsi zasloni prototipa">
-        <a href="#welcome">01 · Dobrodošli</a><a href="#today">02 · Danes</a><a href="#subjects">03 · Predmeti</a><a href="#new-task">04 · Nova naloga</a><a href="#plan">05 · Načrt</a><a href="#replan">06 · Prilagoditev</a><a href="#focus">07 · Focus</a><a href="#progress">08 · Napredek</a><a href="#settings">09 · Nastavitve</a><a href="#material">10 · Gradivo / OCR</a><a href="#quiz">11 · Kviz</a>
-      </nav>
-      <p class="note">Izmišljeni podatki. Spremembe veljajo samo do osvežitve. Prijava, koledar, kamera, OCR in AI niso povezani.</p>
-    </aside>
-    <main class="device" aria-label="Prototip mobilne aplikacije">
-      <div class="statusbar"><span>9:41</span><span>●●● &nbsp; ▰</span></div>
-      <header class="appbar"><a class="brand" href="#today" style="text-decoration:none;color:inherit">StudyFlow</a><a class="settings-link" href="#settings">Nastavitve</a></header>
-      <div class="prototype-label">PROTOTIP · IZMIŠLJENI PODATKI · 16.–22. NOVEMBER</div>
-      <div class="viewport" id="viewport">
-        <section class="screen welcome" id="welcome" aria-labelledby="welcome-title">
-          <div class="eyebrow">Učenje v tvojem ritmu</div>
-          <div class="welcome-art" aria-hidden="true"><span class="book"></span><span class="book"></span><span class="book"></span></div>
-          <h2 id="welcome-title">Tvoj čas.<br>Tvoj učni načrt.</h2><p class="muted">Zberi obveznosti, določi prosti čas in naredi prostor za napredek.</p>
-          <a class="button full gap" href="#today">Začni brez prijave →</a>
-          <button class="button secondary full" style="margin-top:10px" type="button" data-notice="Prijava s Firebase bo dodana v integracijski fazi.">Prijava / registracija</button>
-          <p style="font-size:12px" class="muted">Lokalno načrtovanje je predvideno tudi brez računa.</p>
-        </section>
-        <section class="screen" id="today" hidden aria-labelledby="today-title">
-          <div class="eyebrow">Torek, 17. november · vzorec</div><h2 id="today-title">Majhni koraki,<br>viden napredek.</h2>
-          <div class="card hero gap"><div class="row"><span>Današnji načrt</span><span class="pill">2 seji</span></div><h3>50 minut</h3><p class="muted">Ena naloga naenkrat.</p><a class="button white full" href="#focus" style="margin-top:18px">Začni učenje →</a></div>
-          <div class="row section-title"><h3>Na vrsti danes</h3><a href="#plan" style="font-size:12px">Celoten načrt</a></div>
-          <div class="stack"><div class="card task"><div class="time">16:00–16:25 · RVIR</div><h3>Ponovitev poglavja</h3><p>Prvi učni blok · 25 min</p></div><div class="card task purple"><div class="time">17:00–17:25 · Matematika</div><h3>Vaje za kolokvij</h3><p>Drugi učni blok · 25 min</p></div><div class="card alert"><h3>Včerajšnja seja je ostala odprta</h3><p><small>Preglej predlog novega termina.</small></p><a class="button small secondary" href="#replan" style="margin-top:10px">Prilagodi načrt</a></div></div>
-        </section>
-        <section class="screen" id="subjects" hidden aria-labelledby="subjects-title">
-          <div class="row"><div><div class="eyebrow">Vse na enem mestu</div><h2 id="subjects-title">Moji predmeti</h2></div><span class="pill">3 predmeti</span></div>
-          <div class="stack gap"><div class="card"><div class="subject"><span class="number">R</span><div><h3>RVIR</h3><p>Izpit · petek, 20. 11.</p></div></div><div class="progress"><span style="width:60%"></span></div><p style="font-size:11px" class="muted">3 od 5 nalog opravljenih</p></div><div class="card subject"><span class="number" style="background:#ede9f4;color:#6b5d92">M</span><div><h3>Matematika</h3><p>Kolokvij · sreda, 25. 11.</p></div></div><div class="card subject"><span class="number" style="background:#f3eddf;color:#856c3e">P</span><div><h3>Programiranje</h3><p>Projekt · ponedeljek, 30. 11.</p></div></div></div>
-          <div class="row section-title"><h3>Obveznosti</h3><a href="#new-task" style="font-size:12px">+ Nova naloga</a></div><div class="stack" id="task-list"><div class="card task"><h3>Ponovitev poglavja</h3><p>RVIR · rok 20. 11. · 60 min</p></div></div>
-          <a class="button secondary full gap" href="#material">Dodaj gradivo / OCR →</a>
-        </section>
-        <section class="screen" id="new-task" hidden aria-labelledby="task-title">
-          <a class="back" href="#subjects">← Predmeti</a><h2 id="task-title">Nova obveznost</h2><p class="muted">Kaj želiš opraviti in do kdaj?</p>
-          <form id="task-form"><label for="task-subject">Predmet</label><select id="task-subject"><option>RVIR</option><option>Matematika</option><option>Programiranje</option></select><label for="task-type">Vrsta</label><select id="task-type"><option>Naloga</option><option>Izpit</option><option>Kolokvij</option></select><label for="task-name">Naslov</label><input id="task-name" required maxlength="80" placeholder="Npr. Ponovitev poglavja"><div class="two"><div><label for="task-date">Rok</label><input type="date" id="task-date" value="2026-11-20" required></div><div><label for="task-minutes">Trajanje (min)</label><input type="number" id="task-minutes" min="1" max="10000" value="60" required></div></div><div class="two"><div><label for="task-difficulty">Zahtevnost</label><select id="task-difficulty"><option>1 · Lahko</option><option>2</option><option selected>3 · Srednje</option><option>4</option><option>5 · Težko</option></select></div><div><label for="task-priority">Prioriteta</label><select id="task-priority"><option>1 · Visoka</option><option selected>2 · Srednja</option><option>3 · Nizka</option></select></div></div><button type="submit" class="button full gap">Shrani vzorčno obveznost</button><p style="font-size:11px" class="muted">Podatek se ob osvežitvi ponastavi.</p></form>
-        </section>
-        <section class="screen" id="plan" hidden aria-labelledby="plan-title">
-          <div class="eyebrow">16.–22. november · vzorčni teden</div><h2 id="plan-title">Prostor za učenje.</h2><p class="muted">Pregled načrtovanih učnih blokov.</p>
-          <div class="days"><div class="day">PON<strong>16</strong></div><div class="day active">TOR<strong>17</strong></div><div class="day">SRE<strong>18</strong></div><div class="day">ČET<strong>19</strong></div><div class="day">PET<strong>20</strong></div></div>
-          <div class="stack"><div class="card task"><div class="time">Tor, 17. 11. · 16:00–16:25</div><h3>Ponovitev poglavja</h3><p>RVIR · učni blok 1</p></div><div class="card task purple"><div class="time">Tor, 17. 11. · 17:00–17:25</div><h3>Vaje za kolokvij</h3><p>Matematika</p></div><div class="card task"><div class="time" id="plan-time">Sre, 18. 11. · 18:00–18:25</div><h3>Ponovitev poglavja</h3><p>RVIR · učni blok 2</p></div></div>
-          <a class="button full gap" href="#replan">Preglej prilagoditev →</a><a class="button secondary full" href="#settings" style="margin-top:10px">Uredi razpoložljivost</a>
-        </section>
-        <section class="screen" id="replan" hidden aria-labelledby="replan-title">
-          <a class="back" href="#plan">← Načrt</a><div class="eyebrow">Predlog spremembe</div><h2 id="replan-title">Načrt se lahko<br>prilagodi tebi.</h2><p class="muted">Primer prestavitve 25-minutnega bloka zaradi spremenjene razpoložljivosti.</p>
-          <div class="card gap"><span class="pill">RVIR · Ponovitev poglavja</span><div class="change"><div><small>PREJ</small><br>Sre, 18. 11. · 18:00–18:25</div><div class="new"><small>PREDLOG</small><br>Čet, 19. 11. · 18:00–18:25</div></div></div><div class="card alert gap"><h3>Ti potrdiš spremembe</h3><p><small>Rok ostane 20. 11. Opravljene seje se ne spreminjajo.</small></p></div>
-          <button class="button full gap" id="apply-plan" type="button">Potrdi novi termin</button><a class="button secondary full" href="#plan" style="margin-top:10px">Ohrani trenutni načrt</a>
-        </section>
-        <section class="screen" id="focus" hidden aria-labelledby="focus-title">
-          <a class="back" href="#today">← Danes</a><div class="eyebrow">RVIR · Ponovitev poglavja</div><h2 id="focus-title">Zdaj je čas zate.</h2><div class="timer"><span class="tag">Pomodoro</span><strong id="timer" aria-live="off">25:00</strong><span class="muted" id="timer-state">Pripravljen</span></div>
-          <div class="two"><button class="button" id="timer-toggle" type="button">Začni</button><button class="button secondary" id="timer-finish" type="button">Zaključi</button></div><div class="card gap"><label class="switch" for="focus-mode"><span>Focus Mode · prikaz nastavitve</span><input id="focus-mode" type="checkbox"></label><p style="font-size:11px" class="muted">V aplikaciji: zaznavanje telefona z zaslonom navzdol med aktivno uporabo. V prototipu senzor ni povezan.</p></div>
-        </section>
-        <section class="screen" id="progress" hidden aria-labelledby="progress-title">
-          <div class="eyebrow">Vzorčni podatki za prikaz</div><h2 id="progress-title">Vsaka minuta šteje.</h2><div class="metrics"><div class="card"><small>Ta teden</small><strong>3 h 20</strong><small>minut učenja</small></div><div class="card"><small>Opravljeno</small><strong>7 / 10</strong><small>učnih nalog</small></div></div>
-          <div class="card"><div class="row"><h3>Ritem učenja</h3><span class="pill">Teden</span></div><div class="bars" role="img" aria-label="Vzorčni graf: ponedeljek 40, torek 60, sreda 25, četrtek 45 in petek 30 minut."><span class="bar" style="height:67%"></span><span class="bar" style="height:100%"></span><span class="bar" style="height:42%"></span><span class="bar" style="height:75%"></span><span class="bar" style="height:50%"></span></div><div class="chart-labels"><span>Pon</span><span>Tor</span><span>Sre</span><span>Čet</span><span>Pet</span></div></div>
-          <h3 class="section-title">Po predmetih</h3><div class="stack"><div class="card"><div class="row"><span>RVIR</span><strong>60 %</strong></div><div class="progress"><span style="width:60%"></span></div></div><div class="card"><div class="row"><span>Matematika</span><strong>40 %</strong></div><div class="progress"><span style="width:40%"></span></div></div></div><p class="muted" style="font-size:11px">Statistika je statična predstavitev, ne izračun iz dejanj v prototipu.</p>
-        </section>
-        <section class="screen" id="settings" hidden aria-labelledby="settings-title">
-          <a class="back" href="#today">← Danes</a><h2 id="settings-title">Tvoj način dela.</h2><h3 class="section-title">Razpoložljivost</h3><div class="card"><span class="pill">Ponedeljek–petek · vzorec</span><div class="two"><div><label for="available-start">Od</label><input id="available-start" type="time" value="16:00"></div><div><label for="available-end">Do</label><input id="available-end" type="time" value="19:00"></div></div><button class="button small full" style="margin-top:14px" type="button" data-notice="To je prikaz shranjevanja. Prototip ne izračuna novega načrta.">Shrani prikaz nastavitev</button></div><div class="card gap"><label class="switch" for="reminders"><span>Lokalni opomniki</span><input id="reminders" type="checkbox" checked></label><p class="muted" style="font-size:11px">Sistemska dovoljenja bodo del mobilne aplikacije.</p></div><h3 class="section-title">Povezave · načrtovano</h3><div class="stack"><button class="button secondary full" type="button" data-notice="Google Calendar v prototipu ni povezan.">Poveži Google Calendar</button><button class="button secondary full" type="button" data-notice="Firebase prijava in sinhronizacija sledita pozneje.">Račun in sinhronizacija</button></div>
-        </section>
-        <section class="screen" id="material" hidden aria-labelledby="material-title">
-          <a class="back" href="#subjects">← Predmeti</a><div class="eyebrow">Napredna funkcija · predlog</div><h2 id="material-title">Od gradiva<br>do učnega bloka.</h2><div class="photo gap">Vzorčni posnetek gradiva</div><button type="button" class="button secondary full" style="margin-top:10px" data-notice="Kamera in OCR v prototipu nista povezana. Spodaj je vzorčno besedilo.">Fotografiraj / izberi sliko</button><label for="ocr-text">Preglej in popravi besedilo</label><textarea id="ocr-text">Primarni ključ enolično identificira zapis v tabeli. Tuji ključ vzpostavi povezavo z zapisom druge tabele.</textarea><label for="ocr-time">Tvoja ocena časa (min)</label><input id="ocr-time" type="number" min="1" value="25"><button class="button full" style="margin-top:15px" type="button" data-notice="Prikaz potrditve gradiva. Pravo shranjevanje in načrtovanje sledita v aplikaciji.">Potrdi za načrtovanje</button><a class="button secondary full" style="margin-top:10px" href="#quiz">Poglej vzorčni kviz →</a>
-        </section>
-        <section class="screen" id="quiz" hidden aria-labelledby="quiz-title">
-          <a class="back" href="#material">← Gradivo</a><div class="eyebrow">Vzorec kviza · brez povezave z AI</div><h2 id="quiz-title">Preveri razumevanje.</h2><div class="card gap"><span class="pill">Podatkovne baze · vprašanje 1 / 1</span><h3 style="margin-top:17px">Kaj je namen primarnega ključa?</h3><button class="option" type="button" data-answer="correct">Enolično identificira zapis.</button><button class="option" type="button" data-answer="wrong">Določa barvo tabele.</button><button class="option" type="button" data-answer="wrong">Samodejno izbriše stare zapise.</button><p id="quiz-feedback" role="status" class="muted" style="font-size:13px">Izberi odgovor za prikaz pojasnila.</p></div><p class="muted" style="font-size:12px">V prihodnji aplikaciji uporabnik potrdi pošiljanje besedila. AI vsebina lahko vsebuje napake.</p><a href="#subjects" class="button full gap">Nazaj k predmetom</a>
-        </section>
-      </div>
-      <nav class="bottom" aria-label="Glavna navigacija"><a href="#today"><strong aria-hidden="true">⌂</strong>Danes</a><a href="#subjects"><strong aria-hidden="true">▤</strong>Predmeti</a><a href="#plan"><strong aria-hidden="true">▦</strong>Načrt</a><a href="#progress"><strong aria-hidden="true">▥</strong>Napredek</a></nav>
-    </main>
-  </div>
-  <div id="toast" class="toast" role="status" hidden></div>
-  <script>
-    const screens = [...document.querySelectorAll('.screen')];
-    const routes = new Set(screens.map(screen => screen.id));
-    let toastTimeout;
-    function notice(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.hidden = false;
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => { toast.hidden = true; }, 4500);
-    }
-    function navigate() {
-      const route = location.hash.slice(1);
-      const current = routes.has(route) ? route : 'welcome';
-      screens.forEach(screen => { screen.hidden = screen.id !== current; });
-      const parent = {'new-task':'subjects', material:'subjects', quiz:'subjects', replan:'plan', focus:'today'};
-      document.querySelectorAll('.guide a, .bottom a').forEach(link => {
-        const active = link.closest('.bottom') ? (parent[current] || current) : current;
-        if (link.hash === '#' + active) link.setAttribute('aria-current', 'page');
-        else link.removeAttribute('aria-current');
-      });
-      document.getElementById('viewport').scrollTop = 0;
-      document.title = 'StudyFlow · ' + document.getElementById(current).querySelector('h2').textContent;
-    }
-    window.addEventListener('hashchange', navigate);
-    navigate();
-    document.querySelectorAll('[data-notice]').forEach(button => button.addEventListener('click', () => notice(button.dataset.notice)));
-    document.getElementById('task-form').addEventListener('submit', event => {
-      event.preventDefault();
-      const title = document.getElementById('task-name').value.trim();
-      if (!title) { notice('Vnesi naslov obveznosti.'); return; }
-      const card = document.createElement('div'); card.className = 'card task';
-      const heading = document.createElement('h3'); heading.textContent = title;
-      const detail = document.createElement('p');
-      detail.textContent = document.getElementById('task-subject').value + ' · ' + document.getElementById('task-type').value + ' · rok ' + document.getElementById('task-date').value + ' · ' + document.getElementById('task-minutes').value + ' min';
-      card.append(heading, detail); document.getElementById('task-list').append(card);
-      event.target.reset(); location.hash = 'subjects'; notice('Vzorčna obveznost je dodana do osvežitve strani.');
-    });
-    document.getElementById('apply-plan').addEventListener('click', () => {
-      document.getElementById('plan-time').textContent = 'Čet, 19. 11. · 18:00–18:25';
-      location.hash = 'plan'; notice('Vzorčni termin je prestavljen.');
-    });
-    let seconds = 25 * 60, interval, target;
-    function showTime() {
-      document.getElementById('timer').textContent = String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0');
-    }
-    function pauseTimer() {
-      if (interval) seconds = Math.max(0, Math.ceil((target - Date.now()) / 1000));
-      clearInterval(interval); interval = null; showTime();
-      document.getElementById('timer-toggle').textContent = seconds === 1500 ? 'Začni' : 'Nadaljuj';
-      document.getElementById('timer-state').textContent = 'Premor';
-    }
-    document.getElementById('timer-toggle').addEventListener('click', () => {
-      if (interval) { pauseTimer(); return; }
-      if (seconds <= 0) seconds = 1500;
-      target = Date.now() + seconds * 1000;
-      document.getElementById('timer-toggle').textContent = 'Premor';
-      document.getElementById('timer-state').textContent = 'Osredotočeno učenje';
-      interval = setInterval(() => {
-        seconds = Math.max(0, Math.ceil((target - Date.now()) / 1000)); showTime();
-        if (!seconds) { pauseTimer(); document.getElementById('timer-state').textContent = 'Čas za odmor'; notice('Predstavitveni interval je končan.'); }
-      }, 250);
-    });
-    document.getElementById('timer-finish').addEventListener('click', () => {
-      pauseTimer(); seconds = 1500; showTime();
-      document.getElementById('timer-toggle').textContent = 'Začni';
-      document.getElementById('timer-state').textContent = 'Pripravljen';
-      location.hash = 'today'; notice('Predstavitvena seja je zaključena. Statistika ostaja vzorčna.');
-    });
-    document.querySelectorAll('[data-answer]').forEach(button => button.addEventListener('click', () => {
-      document.querySelectorAll('[data-answer]').forEach(option => option.classList.remove('selected'));
-      button.classList.add('selected');
-      document.getElementById('quiz-feedback').textContent = (button.dataset.answer === 'correct' ? 'Pravilno. ' : 'Poskusi znova. ') + 'Primarni ključ enolično identificira zapis v tabeli.';
-    }));
-  </script>
+  <main>
+    <header>
+      <div><small>RVIR · začetna zasnova</small><h1>StudyFlow</h1><p>Predlogi zaslonov s pastelnimi karticami in vijoličnimi poudarki. Podatki so izmišljeni, končni izgled aplikacije bomo določili skupaj z ekipo.</p></div>
+      <a href="../README.md">Dokumentacija</a>
+    </header>
+    <section class="grid" aria-label="Šest predlogov zaslonov">
+      <figure><figcaption><span>01 · Domov</span><span>PREDLOG</span></figcaption><a href="slike/01-domov.svg" aria-label="Odpri celotno sliko: Domov"><img src="slike/01-domov.svg" alt="Predlog zaslona Domov za StudyFlow" width="390" height="820"></a></figure>
+      <figure><figcaption><span>02 · Predmeti</span><span>PREDLOG</span></figcaption><a href="slike/02-predmeti.svg" aria-label="Odpri celotno sliko: Predmeti"><img src="slike/02-predmeti.svg" alt="Predlog zaslona Predmeti za StudyFlow" width="390" height="820"></a></figure>
+      <figure><figcaption><span>03 · Načrt</span><span>PREDLOG</span></figcaption><a href="slike/03-nacrt.svg" aria-label="Odpri celotno sliko: Načrt"><img src="slike/03-nacrt.svg" alt="Predlog zaslona Načrt za StudyFlow" width="390" height="820"></a></figure>
+      <figure><figcaption><span>04 · Nova naloga</span><span>PREDLOG</span></figcaption><a href="slike/04-nova-naloga.svg" aria-label="Odpri celotno sliko: Nova naloga"><img src="slike/04-nova-naloga.svg" alt="Predlog zaslona Nova naloga za StudyFlow" width="390" height="820"></a></figure>
+      <figure><figcaption><span>05 · Fokus</span><span>PREDLOG</span></figcaption><a href="slike/05-fokus.svg" aria-label="Odpri celotno sliko: Fokus"><img src="slike/05-fokus.svg" alt="Predlog zaslona Fokus za StudyFlow" width="390" height="820"></a></figure>
+      <figure><figcaption><span>06 · Napredek</span><span>PREDLOG</span></figcaption><a href="slike/06-napredek.svg" aria-label="Odpri celotno sliko: Napredek"><img src="slike/06-napredek.svg" alt="Predlog zaslona Napredek za StudyFlow" width="390" height="820"></a></figure>
+    </section>
+    <footer>Galerija prikazuje mockup slike. Zasloni in njihove funkcionalnosti še niso implementirani v aplikaciji.</footer>
+  </main>
 </body>
 </html>

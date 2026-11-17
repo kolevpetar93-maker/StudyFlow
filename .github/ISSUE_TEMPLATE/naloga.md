@@ -14,7 +14,7 @@ Kaj mora biti narejeno in zakaj?
 
 - Odgovorni član: določite osebo in GitHub assignee.
 - Prioriteta: P1 / P2 / P3; dodajte ustrezno oznako.
-- Faza: M0–M7.
+- Faza: 1–6 iz načrta dela.
 - Odvisnosti:
 
 ## Merila sprejema
